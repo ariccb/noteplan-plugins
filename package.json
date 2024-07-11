@@ -172,6 +172,7 @@
     "split": "1.0.1",
     "sprintf-js": "1.0.3",
     "strftime": "0.10.0",
+    "supernote-typescript": "^0.2.2",
     "toml": "^3.0.0"
   }
 }

@@ -1,0 +1,174 @@
+{
+  "COMMENT": "Details on these fields: https://help.noteplan.co/article/67-create-command-bar-plugins",
+  "macOS.minVersion": "10.13.0",
+  "noteplan.minAppVersion": "3.4.0",
+  "plugin.id": "ariccb.SupernoteSyncUnofficial",
+  "plugin.name": "🧩 Supernote by Ratta Sync - Unofficial",
+  "plugin.version": "0.1.0",
+  "plugin.lastUpdateInfo": "Describe this update",
+  "plugin.description": "Supernote Sync Unofficial allows you to fetch and sync notes and tasks from the Supernote E-Ink tablet by Ratta into NotePlan.",
+  "plugin.author": "ariccb",
+  "plugin.requiredFiles-EDIT_ME": ["html-plugin-comms.js"],
+  "plugin.requiredFiles-NOTE": "If you want to use HTML windows, remove the '-EDIT_ME' ABOVE",
+  "plugin.dependsOn": [],
+  "plugin.script": "script.js",
+  "plugin.url": "https://github.com/NotePlan/plugins/blob/main/ariccb.SupernoteSyncUnofficial/README.md",
+  "plugin.changelog": "https://github.com/NotePlan/plugins/blob/main/ariccb.SupernoteSyncUnofficial/CHANGELOG.md",
+  "plugin.commands": [
+    {
+      "note": "================== COMMMANDS ========================"
+    },
+    {
+      "name": "Say Hello from ariccb.SupernoteSyncUnofficial! (change this to your own command)",
+      "description": "Your first plugin!",
+      "jsFunction": "sayHello",
+      "alias": [
+        "helloWorld Alias"
+      ],
+      "arguments": [
+        "Append this text to document"
+      ]
+    },
+    {
+      "name": "Fetch all synced lines codes in NotePlan Notes",
+      "description": "prints all of the currently used codes for synced lines in NotePlan, to make sure manually created synced lines are not conflicting",
+      "jsFunction": "fetchAllSyncedLineCodes",
+      "alias": ["fasl"],
+      "hidden": true
+    },
+    {
+      "name": "Supernote to Noteplan Sync",
+      "description": "Process all of the Supernote .note files in your Supernote's Note directory and place recognized text and converted images to the appropriate NotePlan notes",
+      "jsFunction": "supernoteToNotePlanSync",
+      "alias": ["s2n", "sns"],
+      "hidden": false
+    },
+    {
+      "name": "Supernote Tasks Sync",
+      "description": "Process all of the Supernote's Tasks and place them in today's NotePlan note, with a generated synced line code",
+      "jsFunction": "insertDate",
+      "alias": ["sts"],
+      "hidden": false
+    },
+    {
+      "NOTE": "DO NOT EDIT THIS COMMAND/TRIGGER",
+      "name": "Supernote by Ratta Sync - Unofficial: Version",
+      "description": "Update + Check Version",
+      "jsFunction": "versionCheck"
+    },
+    {
+      "description": "DO NOT EDIT THIS COMMAND/TRIGGER",
+      "name": "onOpen",
+      "jsFunction": "onOpen",
+      "hidden": true
+    },
+    {
+      "description": "DO NOT EDIT THIS COMMAND/TRIGGER",
+      "name": "onEditorWillSave",
+      "jsFunction": "onEditorWillSave",
+      "hidden": true
+    },
+    {
+      "NOTE": "DO NOT EDIT THIS COMMAND/TRIGGER",
+      "name": "onMessageFromHTMLView",
+      "description": "ariccb.SupernoteSyncUnofficial: Callback function to receive messages from HTML view",
+      "jsFunction": "onMessageFromHTMLView",
+      "hidden": true
+    },
+    {
+      "NOTE": "DO NOT EDIT THIS COMMAND/TRIGGER",
+      "name": "Supernote by Ratta Sync - Unofficial: Update Plugin Settings",
+      "description": "Preferences",
+      "jsFunction": "editSettings"
+    }
+  ],
+  "plugin.settings": [
+    {
+      "note": "================== SETTINGS ========================"
+    },
+    {
+      "COMMENT": "Plugin settings documentation: https://help.noteplan.co/article/123-plugin-configuration",
+      "type": "heading",
+      "title": "Supernote by Ratta Sync - Unofficial Settings"
+    },
+    {
+      "type": "string",
+      "key": "supernote_tool_image_conversion_type",
+      "title": "Image format to use: either 'png' or 'pdf'",
+      "description": "The image files that get created from converting the .note files get embedded in the NotePlan notes. This setting determines the format of the image files.",
+      "default": "png",
+      "required": true
+    },
+    {
+      "type": "string",
+      "key": "notes_application_inbox_path",
+      "title": "Inbox Path",
+      "description": "Path to the inbox directory in the notes application that will be used to place notes that were in the parent folder of the Supernote notes.",
+      "default": "/Users/acbouwers/Library/Containers/co.noteplan.NotePlan3/Data/Library/Application Support/co.noteplan.NotePlan3/Notes/00 - Inbox",
+      "required": true
+    },
+    {
+      "type": "string",
+      "key": "notes_application_file_ext",
+      "title": "File Extension",
+      "description": "File extension used for notes in the application.",
+      "default": ".md",
+      "required": true
+    },
+    {
+      "type": "string",
+      "key": "notes_application_storage_path",
+      "title": "Storage Path",
+      "description": "Path to the storage directory in the notes application.",
+      "default": "/Users/acbouwers/Library/Containers/co.noteplan.NotePlan3/Data/Library/Application Support/co.noteplan.NotePlan3/Notes",
+      "required": true
+    },
+    {
+      "type": "string",
+      "key": "supernote_parent_storage_path",
+      "title": "Supernote Parent Storage Path",
+      "description": "Path to the parent storage directory in the Supernote application.",
+      "default": "/Users/acbouwers/Library/Containers/5E209006-499F-43DC-BD7C-EC697B9B4D64/Data/Library/Application Support/com.ratta.supernote/677531935891181568",
+      "required": true
+    },
+    {
+      "type": "hidden",
+      "key": "pluginID",
+      "default": "ariccb.SupernoteSyncUnofficial",
+      "COMMENT": "This is for use by the editSettings helper function. PluginID must match the plugin.id in the top of this file"
+    },
+    {
+      "title": "A string in prefs",
+      "key": "settingsString",
+      "type": "string",
+      "description": "Enter some string and see it change when the plugin is run",
+      "default": "This default setting was set in plugin preferences!"
+    },
+    {
+      "note": "================== DEBUGGING SETTINGS ========================"
+    },
+    {
+      "NOTE": "DO NOT CHANGE THE FOLLOWING SETTINGS; ADD YOUR SETTINGS ABOVE ^^^",
+      "type": "separator"
+    },
+    {
+      "type": "heading",
+      "title": "Debugging"
+    },
+    {
+      "key": "_logLevel",
+      "type": "string",
+      "title": "Log Level",
+      "choices": [
+        "DEBUG",
+        "INFO",
+        "WARN",
+        "ERROR",
+        "none"
+      ],
+      "description": "Set how much logging output will be displayed when executing Supernote by Ratta Sync - Unofficial commands in NotePlan Plugin Console Logs (NotePlan -> Help -> Plugin Console)\n\n - DEBUG: Show All Logs\n - INFO: Only Show Info, Warnings, and Errors\n - WARN: Only Show Errors or Warnings\n - ERROR: Only Show Errors\n - none: Don't show any logs",
+      "default": "INFO",
+      "required": true
+    }
+  ]
+}
